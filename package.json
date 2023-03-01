@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev:fe": "next dev",
+    "dev:be": "cd personal-blog && pnpm run dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "types-check": "tsc --noEmit",
+    "postinstall": "husky install && cd personal-blog && pnpm install"
   },
   "dependencies": {
     "@types/node": "18.14.2",
@@ -18,5 +21,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.5"
+  },
+  "devDependencies": {
+    "@babel/core": ">=7.0.0 <8.0.0",
+    "@babel/plugin-syntax-flow": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@improntaadvance/eslint-config": "^0.11.0",
+    "autoprefixer": "^10.4.13",
+    "eslint-config-react-app": "^7.0.0",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
   }
 }
