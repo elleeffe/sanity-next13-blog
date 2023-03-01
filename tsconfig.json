@@ -25,7 +25,8 @@
     ],
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+        "./lib/*"
       ]
     }
   },
@@ -33,7 +34,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "/Users/lorenzof/Desktop/personal/sanity-next13-blog/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
