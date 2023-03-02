@@ -26,16 +26,17 @@ export default async function Home() {
           </div>
         }
       >
+        <h1>Preview mode</h1>
         <PreviewBlogList query={query} />
       </PreviewSuspense>
     );
   }
 
   const posts = await client.fetch(query);
-  console.log(posts);
 
   return (
     <main className={inter.className}>
+      <h1>Not preview mode</h1>
       <BlogList posts={posts} />
     </main>
   );
