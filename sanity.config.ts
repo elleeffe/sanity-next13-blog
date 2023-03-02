@@ -9,8 +9,8 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 
 export default defineConfig({
   basePath: '/studio',
-  name: 'Personal_Blog',
-  title: 'Personal Blog',
+  name: 'MyStudio',
+  title: 'My Studio',
 
   projectId,
   dataset,
