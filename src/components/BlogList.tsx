@@ -1,4 +1,5 @@
-import urlFor from '@/urlFor';
+import urlFor from '@/utils/urlFor';
+import {formatDate} from '@/utils/utils';
 import Image from 'next/image';
 
 type Props = {
@@ -24,7 +25,7 @@ const BlogList = ({posts}: Props) => {
           <br />
           <p>Autore: {post.author.name}</p>
           <p>Titolo: {post.title}</p>
-          <p>Data di creazione: {post._createdAt}</p>
+          <p>Data di creazione: {formatDate(post._createdAt)}</p>
         </div>
       ))}
     </div>
