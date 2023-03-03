@@ -31,7 +31,7 @@ export default async function BlogHome() {
     );
   }
 
-  const posts = await client.fetch(query);
+  const posts: Post[] = await client.fetch(query);
 
   return (
     <>
