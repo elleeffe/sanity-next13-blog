@@ -14,6 +14,11 @@ interface Post extends Base {
   slug: Slug;
   title: string;
   description: string;
+  seoTitle: string;
+  seoDescription: string;
+  ogDescription: string;
+  ogTitle: string;
+  ogImage: Image;
 }
 
 interface Author extends Base {
@@ -72,3 +77,15 @@ interface Description {
   _type: 'string';
   current: string;
 }
+
+// ogDescription: 'open graph description',
+//   ogImage: {
+//     _type: 'image',
+//     asset: {
+//       _ref: 'image-3374b953c678baf9b7aafea6d16df9028f0714da-220x185-png',
+//       _type: 'reference'
+//     }
+//   },
+//   ogTitle: 'open graph title',
+//   seoDescription: 'descrizione seo',
+//   seoTitle: 'titolo seo',

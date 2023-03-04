@@ -5,6 +5,7 @@ import {groq} from 'next-sanity';
 import Image from 'next/image';
 import PortableText from 'react-portable-text';
 import PostBody from '@/components/PostBody';
+import {Metadata} from 'next';
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '';
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || '';
@@ -27,6 +28,43 @@ export const generateStaticParams = async () => {
   return posts.map(({slug}) => ({slug: slug.current}));
 };
 
+export async function generateMetadata({
+  params: {slug},
+}: Props): Promise<Metadata> {
+  const query = groq`
+  *[_type=='post' && slug.current == $slug][0] {
+    ...
+}`;
+  const {
+    seoTitle,
+    seoDescription,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    _createdAt,
+    author,
+  }: Post = await client.fetch(query, {slug});
+
+  const metadata: Metadata = {
+    title: seoTitle + ' | Lorenzo Faenzi Blog',
+    description: seoDescription,
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      url:
+        (process.env.PUBLIC_URL || 'http://localhost:3000') + '/blog/' + slug,
+      siteName: 'Blog | Lorenzo Faenzi',
+      type: 'article',
+      publishedTime: _createdAt,
+      authors: [author.name],
+      images: [{url: urlFor(ogImage).url(), alt: 'post og image'}],
+      locale: 'it-IT',
+    },
+  };
+
+  return metadata;
+}
+
 export default async function Post({params: {slug}}: Props) {
   const query = groq`
 *[_type=='post' && slug.current == $slug][0] {
@@ -35,6 +73,7 @@ export default async function Post({params: {slug}}: Props) {
   categories[]->
 }
 `;
+
   const post: Post = await client.fetch(query, {slug});
 
   return (
